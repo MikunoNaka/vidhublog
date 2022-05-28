@@ -1,0 +1,44 @@
+{{ define "views/post.html" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Vidhu Kant's Blog Post #{{ .ID }}: {{ .Title }}" />
+  <link type="text/css" rel="stylesheet" href="/css/styles.css">
+  <link type="text/css" rel="stylesheet" href="/css/post.css">
+  <title>
+    {{ .Title }} | Vidhu Kant's Blog Post
+  </title>
+</head>
+<body>
+  {{ template "partials/navbar.html" .}}
+  <article>
+    <div class="post-header" id="header">
+      <h1 class="post-title" id="title">
+        {{ .Title }}
+      </h1>
+      <div class="post-info" id="info">
+        <span class="post-created-at" id="created-at">
+          {{ .CreatedAt }}
+          {{ if .UpdatedAt }} <span class="post-updated-at" id="created-at">(Last Updated {{ .UpdatedAt }})</span> {{- end }}
+        </span>
+      </div>
+    </div>
+    <hr class="header-seperator">
+
+    <div class="post-content" id="content">
+      {{ .Content }}
+    </div>
+
+    <div class="post-footer" id="footer">
+      {{ .post_footer }}
+    </div>
+  </article>
+  <noscript>
+    <p>Ahh I see you're a man of culture!</p>
+    <p>(Because you have JavaScript disabled)</p>
+  </noscript>
+</body>
+</html>
+{{ end }}

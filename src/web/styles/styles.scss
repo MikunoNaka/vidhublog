@@ -1,0 +1,30 @@
+@import "theme/global";
+@import "partials/navbar";
+
+// TODO: If I like this font I'll host it myself
+// @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+
+  // font-family: 'Lato', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $defBackgroundColor;
+  color: $defForegroundColor;
+}
+
+@include selectionColors($selectionBackground, $selectionForeground);
+
+a {
+  color: $defLinkForeground;
+  text-decoration: none;
+}
+
+
+

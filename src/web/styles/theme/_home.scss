@@ -1,0 +1,17 @@
+@import "global";
+@import "post";
+
+$buttonBackgroundColor: $altBackgroundColor;
+
+$buttonBorderColor: #000000;
+
+$welcomeHeadingFG: $fg-purple0;
+$welcomeHeadingAltFG: $fg-yellow0;
+$recentsLabelFG: $fg-pink0;
+
+$recentsItemBG: $altBackgroundColor;
+
+// $postTitleFG: #d28bf0;
+$postTitleFG: $defForegroundColor;
+// $postCreatedAtFG: #959495;
+$postCreatedAtFG: #c2c1c2;

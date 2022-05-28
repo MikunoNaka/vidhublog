@@ -1,0 +1,54 @@
+{{ define "views/home.html" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Vidhu Kant's Blog" />
+  <link type="text/css" rel="stylesheet" href="/css/styles.css">
+  <link type="text/css" rel="stylesheet" href="/css/home.css">
+  <title>Vidhu Kant's Blog</title>
+</head>
+<body>
+  <div class="header" id="header">
+    <h1 id="welcome-title">Welcome to Vidhu Kant's Blog!</h1>
+    <p id="welcome-subtitle">Here, I talk about the various topics that interest me.</p>
+    <p>-- important links, maybe navbar, info (probably shit like last update date or number of blogs this week/month/whatever) --</p>
+  </div>
+
+  <div class="links-container" id="links">
+    <span class="links">
+      <a href="/posts">View All Posts</a>
+      <a href="/tags">Filter By Tags</a>
+      <a href="/about">About This Blog</a>
+    </span>
+  </div>
+
+  <div class="recents" id="recents">
+    <h2 class="recents-label" id="recent-posts-label">
+      My Recent Articles:
+    </h2>
+    <div class="posts" id="recent-posts">
+      {{ range .RecentPosts }}
+        <div class="post">
+          <span class="post-createdat">{{ .CreatedAt }}: </span>
+          <a href="/posts/{{ .ID }}">{{ .Title }}</a>
+        </div>
+      {{ end }}
+    </div>
+    <!-- obviously there are no "recent" tags, 
+      just keeping up with naming scheme -->
+    <h2 class="recents-label" id="recent-tags-label">
+      Browse Articles by Tags:
+    </h2>
+    <div class="tags" id="recent-tags">
+      {{ range .Tags}}
+        <a href="/posts/?tags={{ .ID }}">{{ .Name }}</a>
+      {{ end }}
+    </div>
+  </div>
+
+  {{ .Message }}
+</body>
+</html>
+{{ end }}

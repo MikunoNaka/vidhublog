@@ -1,0 +1,133 @@
+@import "theme/global";
+@import "theme/home";
+@import "partials/home";
+
+body { @include home-body; }
+
+.header {
+  text-align: center;
+  #welcome-title { 
+    color: $welcomeHeadingFG;
+  }
+  #welcome-subtitle { 
+    font-size: 1.1em;
+    color: $welcomeHeadingAltFG; 
+  }
+}
+
+.links-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+    // border: 1px solid pink;
+
+  .links {
+    max-width: 42em;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1em;
+      background-color: $buttonBackgroundColor;
+      height: 3rem;
+      min-width: 10em;
+      border: 1px solid $buttonBorderColor;
+      border-radius: 2em;
+    }
+  }
+}
+
+.recents {
+  display: flex;
+  flex-direction: column;
+
+  .recents-label {
+    color: $recentsLabelFG;
+    margin-bottom: 0.5rem;
+  }
+
+  .posts, .tags {
+    background-color: $recentsItemBG;
+    border: 1px solid $buttonBorderColor;
+    width: 100%;
+    padding: 3px 7px;
+    overflow-y: scroll;
+  }
+
+  .posts {
+    font-size: 1.3rem;
+    max-height: 13em;
+    .post {
+      margin: 0.3em auto;
+      a {
+        word-break: break-word;
+        color: $postTitleFG;
+        // font-weight: bold;
+        font-size: 0.95em;
+      }
+      a:hover {
+        color: $defLinkForeground;
+      }
+      .post-createdat {
+        color: $postCreatedAtFG;
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  .tags {
+    height: 28em;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  body { @include home-body-1200px; }
+}
+
+@media screen and (max-width: 800px) {
+  body { @include home-body-800px; }
+  .links-container .links {
+    a {
+      font-size: 1em;
+      min-width: 9em;
+      margin: 0.3em auto;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body { @include home-body-600px; }
+  .links-container .links {
+    a {
+      font-size: 0.9em;
+      min-width: 8.5em;
+    }
+  }
+  .recents {
+    .recents-label {
+      padding: 0 0.8rem
+    }
+    .posts, .tags {
+      padding: 0.2rem 0.8rem;
+      width: 100%;
+      border: none;
+    }
+    .posts {
+      // background-color: $defBackgroundColor;
+      .post {
+        a {
+          font-size: 0.8em;
+        }
+        .post-createdat {
+          font-size: 0.7em;
+        }
+      }
+    }
+  }
+}

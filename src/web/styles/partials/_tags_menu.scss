@@ -1,0 +1,122 @@
+@import "../theme/global";
+@import "../theme/post";
+@import "../theme/home";
+
+$tagButtonBG: $altBackgroundColor;
+
+@mixin button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $tagButtonBG;
+  color: $defForegroundColor;
+  font-size: 1.1em; 
+  padding: 0.5em 1.3em;
+  border-radius: 2em;
+  border: 1px solid $buttonBorderColor;
+  transition: background-color 400ms, top ease 400ms;
+  position: relative;
+  top: 0;
+}
+
+@mixin button-hover {
+  transition: background-color 250ms, top ease 250ms;
+  top: -3px;
+}
+
+.tags-menu {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1920px;
+  width: 100%;
+  margin: auto;
+
+  .tags-switcher::before {
+    content: "Filter By Tags: ";
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: $tagsMenuLabelFG;
+  }
+
+  .tags-switcher {
+    min-width: 1000px;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    .options, .menu {
+      margin: 0.5em auto;
+    }
+    .options {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      min-width: 80%;
+      .tag-label {
+        justify-self: center;
+        margin: 0.1em 1em;
+        .tag {
+          @include button;
+          .active {
+            border: 1px solid green;
+            background-color: blue;
+          }
+        }
+        .tag.active {
+          border-color: $tagButtonActiveBG;
+        }
+        input {
+          display: none;
+        }
+        input:checked + .tag {
+          background-color: $tagButtonActiveBG;
+          @include button-hover;
+        }
+      }
+    }
+    .menu {
+      input {
+        @include button;
+        background-color: rgba($tagButtonActiveBG, 0.9);
+        margin: 0.1em 1em;
+      }
+      input:hover {
+        @include button-hover;
+        background-color: $tagButtonActiveBG;
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .tags-menu {
+    min-width: 700px;
+  
+    .tags-switcher {
+      min-width: 0;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .tags-menu {
+    min-width: 0;
+    .tags-switcher {
+      // for some reason it won't work unless I do .1 .2 .3 thing
+      .options .tag-label .tag, 
+      .menu input {
+        font-size: 1em;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{{ define "partials/tags_menu.html" }}
+<div class="tags-menu">
+  <form class="tags-switcher" action="/posts/filter-by-tags" method="POST">
+    <div class="options">
+      {{ range .Tags }}
+        <label class="tag-label">
+          <input type="checkbox" name="tags" value="{{ .TagID }}" id="{{ .TagID }}" class="{{ if .IsSelected }}active{{ end }}">
+          <span class="tag {{ if .IsSelected }}active{{ end }}">{{ .TagName }}</span>
+        </label>
+      {{ end }}
+    </div>
+    <div class="menu">
+      <input type="reset" value="Clear"/>
+      <input type="submit" value="Filter"/>
+    </div>
+  </form>
+</div>
+{{ end }}

@@ -1,0 +1,67 @@
+{{ define "views/posts.html" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="BLOG DESCRIPTION GHERE" />
+  <link type="text/css" rel="stylesheet" href="/css/styles.css">
+  <link type="text/css" rel="stylesheet" href="/css/posts.css">
+  <title>
+    Index Page
+  </title>
+</head>
+<body>
+  {{ template "partials/navbar.html" .}}
+  {{ template "partials/tags_menu.html" .}}
+  <article>
+    <div class="options" id="options-header">
+      <span class="limit-options">
+        Posts to show per page: 
+        {{ range .LimitOptions }}
+          <a href="?page={{ $.PageNumber }}&limit={{ . }}&first={{ $.FirstPost }}&sort_by={{ if $.SortByOldest }}oldest{{ else }}newest{{ end }}"
+            class="{{ if eq . $.Limit }}active{{- end }}">
+            {{ . }}
+          </a> 
+        {{ end }}
+      </span>
+      <span id="page-sort">
+        Currently sorting by {{ if .SortByOldest }}oldest{{ else }}newest{{ end }} first.
+        <!--a href="?page={{ .PageNumber }}&limit={{ .Limit }}&first={{ .FirstPost }}&sort_by={{ if .SortByOldest }}newest{{ else }}oldest{{ end }}"-->
+        <a href="?limit={{ .Limit }}&sort_by={{ if .SortByOldest }}newest{{ else }}oldest{{ end }}">
+          Sort by {{ if .SortByOldest }}newest{{ else }}oldest{{ end }} first?
+        </a>
+      </span>
+    </div>
+    <div class="posts">
+      {{ range .Posts }}
+        <div class="post">
+          <span class="post-title-tags">
+            <a class="post-title" href="{{ .ID }}">{{ .Title }}</a>
+            <span class="post-tags">
+              {{ range .Tags }}
+                <a class="post-tag" href="/posts?tags={{ .ID }}">{{ .Name }}</a>
+              {{ end }}
+            </span>
+          </span>
+          <div class="post-info">
+            <span class="post-createdat">{{ .CreatedAt }}</span>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+    <div class="options" id="options-footer">
+      <span class="paging-options">
+        {{ if .ShowPrev }}
+          <a href="?page={{ .PrevPage }}&limit={{ .Limit }}&first={{ .PrevFirst }}&sort_by={{ if .SortByOldest }}oldest{{ else }}newest{{ end }}">Previous Page</a>
+        {{- end }}
+
+        {{ if .ShowNext }}
+        <a href="?page={{ .NextPage }}&limit={{ .Limit }}&first={{ .NextFirst }}&sort_by={{ if .SortByOldest }}oldest{{ else }}newest{{ end }}">Next Page</a>
+        {{- end }}
+      </span>
+    </div>
+  </article>
+</body>
+</html>
+{{ end }}

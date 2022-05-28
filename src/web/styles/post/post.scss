@@ -1,0 +1,166 @@
+@import "../theme/global";
+@import "../theme/post";
+@import "../partials/article";
+
+article {
+  @include article-styling;
+  .post-header {
+    .post-title {
+      font-size: $postTitleFontSize;
+      text-align: $postTitleAlignment;
+      color: $postTitleColor;
+      word-break: break-word;
+    }
+    .post-info {
+      color: $postInfoForegroundColor;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+
+  .header-seperator {
+    margin: 1.1em 0;
+  }
+
+  img {
+    object-fit: contain;
+    min-width: 300px;
+    max-width: 50%;
+    min-height: 300px;
+    max-height: 600px;
+    height: auto;
+  }
+
+  img.root-img {
+    min-width: 400px;
+    width: 60%;
+    // max-height: 600px;
+  }
+
+  img.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image-flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      all: initial;
+      max-height: 25em;
+      margin: 0.5em;
+    }
+  }
+
+  li {
+    color: $listItemForeground;
+  }
+  
+  .post-content {
+    h1 { color: $fg1; }
+    h2 { color: $fg2; }
+    h3 { color: $fg3; }
+    h4 { color: $fg4; }
+    h5 { color: $fg5; }
+    h6 { color: $fg6; }
+
+    .code-block {
+      color: $codeBlockForegroundColor;
+      padding: $codeBlockPadding;
+      background-color: $codeBlockBackgroundColor;
+      border-radius: $codeBlockBorderRadius;
+      @include selectionColors (
+        $codeBlockHighlightBackground,
+        $codeBlockHighlightForeground
+      );
+
+      em {
+        all: unset;
+        color: $codeCommentForegroundColor;
+      }
+    }
+  }
+}
+
+.centered {
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  article {
+    @include article-styling-1200px;
+    .header-seperator { margin: 1em -2em; }
+    .post-header { .post-title { font-size: 2.2em; } }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  article {
+    $side-margin: $post-800px-padding;
+    @include article-styling-800px($side-margin);
+    .post-header { .post-title { font-size: 2em; } } 
+    .header-seperator { margin: 1em (-$side-margin * 2); }
+
+    $img-width: 95%;
+    img {
+      min-width: auto;
+      max-width: $img-width;
+      min-height: auto;
+      max-height: auto;
+    }
+
+    .image-flexbox {
+      img {
+        all: initial;
+        max-height: 600px;
+        max-width: $img-width;
+        margin: 0.5em;
+      }
+    }
+
+    ul {
+      width: 100%;
+      li { 
+        width: 100%;
+        .image-flexbox {
+          width: $img-width;
+          img { 
+            max-width: 100%; 
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  article {
+    $padding: $post-600px-padding;
+    @include article-styling-600px($padding);
+
+    img.root-img {
+      min-width: 300px;
+      width: 80%;
+      // max-height: 600px;
+    }
+
+    .header-seperator {
+      margin: 1em (-$padding);
+    }
+    .post-header {
+      .post-title { font-size: 1.5em; }
+      // NOTE: might need to be modified i.e
+      // content goes to next line instead of overflowing
+      .post-info {
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+// global color definitions
+// background
+// $defBackgroundColor: #061820;
+$defBackgroundColor: #151718;
+// $altBackgroundColor: #1a2a30;
+// $defBackgroundColor: #383A59;
+// $altBackgroundColor: #282A36;
+$altBackgroundColor: #232627;
+$selectionBackground: #8215D2;
+
+// foreground
+$defForegroundColor: #dfdfdf;
+$altForegroundColor: #FFFFFF;
+$boringForeground: #b5c4c2;
+$selectionForeground: #FFFFFF;
+// $defLinkForeground: #3691b8;
+$defLinkForeground: #6d8ee2;
+
+// colored foregrounds
+$fg-purple0: #9c79c5;
+
+$fg-pink0: #e82884;
+
+$fg-green0: #9c79c5;
+
+$fg-yellow0: #FFFF99;
+
+
+// apply text selection/highlight colors easily
+@mixin selectionColors($background, $foreground) {
+  ::selection { 
+    color: $foreground;
+    background-color: $background;
+  }
+  ::-moz-selection { 
+    color: $foreground;
+    background-color: $background;
+  }
+}

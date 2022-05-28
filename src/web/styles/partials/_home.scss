@@ -1,0 +1,27 @@
+@import "../theme/global";
+
+@mixin home-body {
+  background-color: $defBackgroundColor;
+  min-width: 1150px;
+  width: 70%;
+  max-width: 1920px;
+  margin: 0em auto;
+  padding: 1em 2em;
+}
+
+@mixin home-body-1200px {
+  margin: 2em auto;
+  min-width: 780px;
+  width: 90%;
+}
+
+@mixin home-body-800px {
+  min-width: 560px;
+}
+
+@mixin home-body-600px {
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
